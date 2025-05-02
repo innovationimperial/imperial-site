@@ -28,10 +28,17 @@ const TeamMemberCard: React.FC<{ member: TeamMember; index: number }> = ({ membe
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="relative aspect-square overflow-hidden bg-imperial-purple/10">
-          {/* Placeholder for when no image is provided */}
-          <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-imperial-purple">
-            {member.name.split(' ').map(n => n[0]).join('')}
-          </div>
+          {member.image ? (
+            <img
+              src={member.image}
+              alt={member.name}
+              className="w-full h-full object-cover object-center"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-imperial-purple">
+              {member.name.split(' ').map(n => n[0]).join('')}
+            </div>
+          )}
         </div>
         
         <div className="p-6">
@@ -42,8 +49,9 @@ const TeamMemberCard: React.FC<{ member: TeamMember; index: number }> = ({ membe
             className={`overflow-hidden transition-all duration-500 ${
               isHovered ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'
             }`}
+            style={{ maxHeight: isHovered ? '8rem' : '0', overflowY: isHovered ? 'auto' : 'hidden' }}
           >
-            <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
+            <p className="text-gray-600 text-sm mb-4 whitespace-pre-line">{member.bio}</p>
           </div>
           
           <div className="flex space-x-3">
@@ -82,9 +90,9 @@ const Team: React.FC = () => {
   const teamMembers: TeamMember[] = [
     {
       name: 'Ntsane Foulo',
-      role: 'CEO & Founder',
-      image: '',
-      bio: 'Tech visionary with extensive experience in software development and business strategy.',
+      role: 'CEO & Co-Founder',
+      image: '/allan.jpg',
+      bio: 'Ntsane Foulo is a tech visionary with extensive experience in software development and business strategy. Holding a degree in computer science and various industry certificates and a seasoned Full Stack Engineer, he brings deep expertise in application development, with a strong focus on AI-powered solutions that drive business transformation and innovation. Ntsane is highly proficient in both frontend and backend development, and has built a wide array of intelligent applications across various industries. He is an expert in a broad range of AI frameworks and automation platforms, including n8n, LangChain, LangGraph, TensorFlow, PyTorch, Hugging Face Transformers, and OpenAI’s API stack, among others. His ability to combine technical depth with strategic insight allows him to create solutions that are.',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -93,9 +101,9 @@ const Team: React.FC = () => {
     },
     {
       name: 'Mcmarsh Dzwimbu',
-      role: 'COO',
-      image: '',
-      bio: 'Operations expert specializing in business process optimization and team management.',
+      role: 'COO and Co-Founder',
+      image: '/mcmarsh.png',
+      bio: 'McMarsh Dzwimbu is an operations expert specializing in business process optimization and team management. He holds a distinction honors Degree in data science and Artificial Intelligence He currently serves as a Full Stack AI Engineer and App Developer at Innovation Imperial, where he has led and contributed to numerous projects involving live AI applications.\n\nMcMarsh specializes in building AI agents, automations, and scalable web applications tailored for business and industrial use cases. His technical expertise spans the MERN stack for web development, as well as Python, Pydantic, n8n, LangChain, LangGraph, and various AI frameworks used in intelligent system development.\n\nIn his current role, McMarsh designs, plans, and builds practical AI-driven solutions for businesses of all sizes looking to meaningfully integrate AI into their operations. He also collaborates with business buyers and sellers to develop ERP, accounting, HR, and other enterprise systems that enhance the functionality and value of their software infrastructure.',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -105,14 +113,28 @@ const Team: React.FC = () => {
     {
       name: 'Enock Ndoy',
       role: 'CTO',
-      image: '',
+      image: '/enock.jpg',
       bio: 'Expert in AI and machine learning with a passion for creating cutting-edge solutions.',
       social: {
         linkedin: '#',
         twitter: '#',
         email: 'enock@innovationimperial.com',
       },
-    }
+    },
+    {
+      name: 'Tonderai Dzwimbu',
+      role: 'CFO',
+      image: '/WhatsApp Image 2025-04-29 at 12.49.44_33dfc7a7.jpg',
+      bio: 'Tonderai Dzwimbu is a qualified Chartered Accountant [CA (Z)] with over four years of experience in accounting and assurance. He possesses strong management skills and extensive knowledge of various accounting, assurance, and related service frameworks.\n\nTonderai is proficient in a range of computer and web-based programs commonly used in the accounting and audit field, including SAP, QuickBooks, and Oracle. His professional experience spans multiple countries—Zimbabwe, Namibia, and South Africa—where he has served renowned and sizeable clients across diverse industries such as insurance, manufacturing, mining, and software as a service (SaaS).',
+      social: {},
+    },
+    {
+      name: 'Mtandazo dube',
+      role: 'CSO',
+      image: '/MTHA.jpg',
+      bio: 'Mtandazo Dube is a seasoned business development and sales professional, He is the CEO of Eazytech international with a strong track record in driving growth and expanding market presence. He holds a Bachelor of Science in Business Studies and a Postgraduate Diploma in Business Administration,  With over 10 years of experience in the industry, he has successfully led numerous projects and initiatives that have contributed to the expansion of business operations and customer base. He is also a Full Stack Engineer and heavily gifted in frontend design and developemnt and a Certified Scrum Master.',
+      social: {},
+    },
   ];
 
   return (
